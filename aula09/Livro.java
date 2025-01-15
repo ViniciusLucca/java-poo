@@ -6,49 +6,51 @@ public class Livro implements Publicacao {
     private int totPaginas;
     private int pagAtual;
     private boolean aberto;
-    private Pessoa leitor = new Pessoa();
+    private Pessoa leitor;
     
-    public Livro(String titulo, String autor, int totPaginas, int pagAtual, Pessoa leitor) {
+    public Livro(String titulo, String autor, int totPaginas, Pessoa leitor) {
         this.titulo = titulo;
         this.autor = autor;
         this.totPaginas = totPaginas;
-        this.pagAtual = pagAtual;
+        this.aberto = true;
+        this.pagAtual = 0;
         this.leitor = leitor;
     }
     
     public String detalhes() {
-        return "Livro [titulo=" + titulo + ", autor=" + autor + ", totPaginas=" + totPaginas + ", aberto=" + aberto
-        + ", leitor=" + leitor + "]";
+        return "Livro [titulo=" + titulo + "\n, autor=" + autor + "\n, totPaginas=" + totPaginas + "\n, aberto=" + aberto
+        + "\n, nome leitor=" + leitor.getNome()+ "\n, idade leitor=" + leitor.getIdade()+ "\n, sexo leitor=" + leitor.getSexo() + "]";
     }
     
     @Override
     public void abrir() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'abrir'");
+        this.aberto = true;
     }
     
     @Override
     public void fechar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fechar'");
+        this.aberto = false;
     }
     
     @Override
-    public void folhear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'folhear'");
+    public void folhear(int p) {
+        this.pagAtual = p;
+        if(p < 0 || p > this.pagAtual)
+        {
+            this.pagAtual = 0;
+        } else{
+            this.pagAtual = p;
+        }
     }
     
     @Override
     public void avancarPag() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'avancarPag'");
+        this.pagAtual += 1;
     }
     
     @Override
     public void voltarPag() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'voltarPag'");
+        this.pagAtual -= 1;
     }
     
     public String getTitulo() {
